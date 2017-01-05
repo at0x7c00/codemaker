@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lenovots.crm.admin.entity">
+    <class name="Operator" table="t_operator">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="loginName"></property>       
+        <property name="name"></property>       
+        <property name="password"></property>   
+        
+        <property name="visibility"></property>   
+         
+        <property name="photo"></property>    
+         
+        <many-to-one name="dept" class="Dept" not-found="ignore" column="deptId" ></many-to-one>
+        
+        <many-to-one name="role" class="Role" not-found="ignore" column="roleId"></many-to-one>
+        
+        <property name="isCenter"></property>       
+        <property name="isMonitor"></property>       
+        <property name="isOnline"></property>      
+        
+        <property name="sex"></property>      
+        <property name="mobileNumber1"></property>      
+        <property name="mobileNumber2"></property>      
+        <property name="phoneNumber1"></property>      
+        <property name="phoneNumber2"></property>  
+            
+        <property name="pop3Address"></property> 
+        <property name="smtpAddress"></property> 
+        <property name="email"></property> 
+        <property name="mailPassword"></property> 
+        
+        <property name="workNum"></property> 
+        <property name="workPwd"></property> 
+        <property name="signPwd"></property> 
+        
+        <property name="styleName"></property> 
+        
+        <many-to-one name="job" class="Job" column="jobId" not-found="ignore" lazy="false"></many-to-one>
+        
+        <property name="isTaskTip"></property> 
+        <property name="checkRate"></property> 
+        <property name="isSound"></property> 
+        <property name="fileName"></property> 
+        
+    </class>
+</hibernate-mapping>

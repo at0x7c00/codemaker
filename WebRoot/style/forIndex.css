@@ -1,0 +1,88 @@
+/**
+ * Ê×Ò³ÑùÊ½²¹³ä
+ */
+
+body{
+	padding:0;
+	margin:0;
+	overflow-x:hidden; 
+	overflow-y:hidden; 
+}
+.LogoHead{
+	border:0px solid red;
+	margin:0px;
+}
+.MainDiv{
+	width:100%;
+	float:none;
+	display:block;
+}
+.LeftMenu{
+	float: left;
+	margin-left:4px;
+	width:15%;
+	display:inline;
+	height: 85%;
+}
+#hideMenu{
+	padding:5px;
+	margin:0px;
+	cursor:pointer;
+	height:16px;
+	text-align: right;
+}
+.RightContent{ 
+	/**/float:left;
+	border:0px solid black;
+	margin-left:2px;
+	display:inline;
+	width:84%;
+	height: 85%;
+	valign:top;
+}
+.CopyRight{
+	border:0px solid blue;
+	padding:10px;
+	font-size:12px;
+	color:gray;
+	margin:2px;
+	display:block;
+	clear: both;
+}
+ #msgBox{
+	width:300px;
+	height:200px;
+	position: absolute;
+	display: block;
+	right: 0;
+	bottom: 0;
+	z-index:1100;
+	display:none;
+}
+ #msgBox h3{
+ 	margin:0px 0px 0px 0px;
+ 	cursor:pointer;
+ 	font-size:14px;
+ 	text-align:center;
+ }
+ #msgBox p{
+ 	text-align: left;
+ 	padding:5px;
+ 	margin-top:0px;
+ }
+ 
+ #phoneMenu{
+ 	width:1100px;
+ 	height:70px;
+ 	position: absolute;
+    left: 0;
+	bottom: 0;
+	z-index:1100;
+	display:none;
+ }
+  #phoneMenu h3{
+ 	margin:0px 0px 0px 0px;
+ 	cursor:pointer;
+ 	font-size:14px;
+ 	text-align:center;
+ }

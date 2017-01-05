@@ -1,0 +1,92 @@
+/**
+ * 公用样式补充
+ */
+body {
+	font-size: 62.5%;
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	padding:0px;
+	margin:0px; 
+}
+table {
+	font-size: 1em;
+}
+
+.InputStyle{
+	border:1px solid #e8e8e8;
+	width:180px;
+}
+.SelectStyle{
+	border:1px solid #e8e8e8;
+	width:180px;
+}
+.TextareaStyle{
+	border:1px solid #e8e8e8;
+	width:80%;
+}
+.ItemBlockBorder{
+	border:1px solid #e8e8e8; 
+	margin-left:5px;
+	width:98%;
+}
+#InputDetailBar{
+	width:98%;
+	text-align:center;	
+	margin:5px;
+}
+.SearchBox{
+   height: 35px;
+   width: 600px; 
+   font-size: 20px; 
+   font-weight: bold;
+}
+
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+}
+.Answer{
+	border:0px;
+	border-bottom:1px solid green;
+	background:transparent;
+	width:150px;
+	text-align:center;
+}
+.Others{
+	border:0px;
+	border-bottom:1px solid green;
+	background:transparent;
+	width:200px;
+	text-align:center;
+}
+
+.QModelStyle{
+	border:0px solid green;
+	font-weight:bold;
+	font-size:14px;
+	margin-left:15px;	
+	margin-top:10px;	
+}
+.QTitleStyle{
+	display:inline;
+	width:80%;
+	border:0px solid red;
+	margin-top:10px;	
+}
+.OptionStyle{
+	border:0px solid blue;
+	margin-left:30px;
+}
+#underLine{
+	position:absolute;
+	margin-left:130px;
+	margin-top:1px;
+	font-size:12px;
+	cursor:pointer;
+	width:50px;
+	height:24px;
+	text-align:center;
+	vertical-align: middle;
+	padding-top:6px;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.admin.entity">
+    <class name="Permission" table="t_permission" lazy="false">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String"/>
+        
+        <property name="url"/>
+        
+        <property name="icon"/>
+        
+        <property name="display"/>
+        
+        <property name="sortValue"/>
+        
+        <!-- 上级权限-->
+        <many-to-one name="parent" class="Permission" column="parentId"></many-to-one>
+        
+        <!-- 下级权限(一对多) -->
+        <set name="children" cascade="all" lazy="false" order-by="sortValue"> 
+           <key column="parentId"></key>
+           <one-to-many class="Permission"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

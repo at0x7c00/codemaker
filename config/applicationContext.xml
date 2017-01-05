@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+	default-lazy-init="true">
+	  
+	<!-- 配置自动扫描注解的包路径 -->
+	<context:component-scan base-package="com.lenovots.crm" />
+	
+	<!-- 映入JDBC属性文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<bean id="propertyConfigurer"    
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">   
+		<!--PropertyPlaceholderConfigurer类来读取xxx.properties配置文件信息,以key和value的形式-->   
+		<property name="locations">   
+		    <list>   
+		        <value>   
+		           classpath:jdbc.properties   
+		        </value>   
+		    </list>   
+		</property>   
+	</bean>  
+	
+	<bean id="crmDataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="${jdbc.urlContent}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="defaultAutoCommit" value="false"></property>
+		<property name="defaultReadOnly" value="false"></property>
+		<property name="defaultTransactionIsolation" value="4"></property>
+		<property name="maxActive" value="8"></property>
+		<property name="maxWait" value="30000"></property>
+	</bean>
+	
+	<!-- 业务系统 -->
+	<bean id="crmSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="crmDataSource" />
+		<property name="hibernateProperties">
+			<props><!-- 配置Hibernate属性 -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5InnoDBDialect
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<!-- 扫描指定目录下的所有实体属性映射配置文件 -->
+		<property name="mappingDirectoryLocations">
+		  <list>
+		    <value>classpath:/com/lenovots/crm/admin/entity</value>
+		    <value>classpath:/com/lenovots/crm/project/entity</value>
+		  </list>
+		</property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="crmSessionFactory" />
+	</bean>
+	
+	<!-- 配置切面 -->
+	<aop:config>
+		<aop:pointcut id="lenovotsProcessor" expression="execution(* com.lenovots.crm.*.service.*.*(..))" />
+		<aop:advisor advice-ref="txChinacitProcessorAdvice" pointcut-ref="lenovotsProcessor" />
+	</aop:config>
+	
+	
+	<!--配置通知-->
+	<tx:advice id="txChinacitProcessorAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			
+			<tx:method name="batchAdd" propagation="REQUIRED" isolation="REPEATABLE_READ"/>
+			
+			<tx:method name="batchDelete" propagation="REQUIRED" />
+			<tx:method name="batchExecute" propagation="REQUIRED" />
+			
+			<tx:method name="find*" propagation="REQUIRES_NEW" read-only="true" isolation="REPEATABLE_READ"/>
+			<tx:method name="get*"  propagation="REQUIRED"  read-only="true" isolation="REPEATABLE_READ"/>
+			
+			<tx:method name="*" propagation="NEVER"/>
+			
+		</tx:attributes>
+	</tx:advice>
+	
+   <!--采用@Transactional注解方式使用事务 -->
+   <tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	  <property name="sessionFactory" ref="crmSessionFactory"></property>
+	</bean>
+	
+</beans>

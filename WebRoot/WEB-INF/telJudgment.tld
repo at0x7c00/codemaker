@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>            <!-- 标签库定义文件根节点:taglib -->
+<tlibversion>1.2</tlibversion>      <!-- 标签库版本 -->
+<jspversion>1.1</jspversion>      <!-- Jsp版本 -->
+<shortname>xoooxle</shortname>       <!-- 标签库名称 -->
+<uri>xooxle</uri>          <!-- uri:很重要！外界导入标签库时认识的名称 -->
+<!-- 定义标签 -->
+<tag>
+   <name>telJudgment</name>             <!-- 标签名称 -->
+   <tagclass>com.lenovots.crm.tag.TelJudgmentTag</tagclass>    <!-- 对应的类 -->
+   <attribute>
+    <name>telValue</name>
+    <required>true</required>          <!-- 是否必需 -->
+    <rtexprvalue>true</rtexprvalue>    <!-- 能否接受表达式 -->
+   </attribute>
+   <attribute>
+    <name>onclick</name>
+    <required>false</required>          <!-- 是否必需 -->
+    <rtexprvalue>true</rtexprvalue>
+   </attribute>
+</tag>
+<tag>
+   <name>mailJudgment</name>             <!-- 标签名称 -->
+   <tagclass>com.lenovots.crm.tag.MailJudgmentTag</tagclass>    <!-- 对应的类 -->
+   <attribute>
+    <name>mailValue</name>
+    <required>true</required>          <!-- 是否必需 -->
+    <rtexprvalue>true</rtexprvalue>    <!-- 能否接受表达式 -->
+   </attribute>
+</tag>
+<tag>
+	<name>contentShower</name>
+	<tagclass>com.lenovots.crm.tag.ContentShower</tagclass>
+	<attribute>
+    	<name>content</name>
+    	<required>true</required>          <!-- 是否必需 -->
+    	<rtexprvalue>true</rtexprvalue>    <!-- 能否接受表达式 -->
+   </attribute>
+	<attribute>
+    	<name>length</name>
+    	<required>true</required>          <!-- 是否必需 -->
+    	<rtexprvalue>true</rtexprvalue>    <!-- 能否接受表达式 -->
+   </attribute>
+</tag>
+</taglib>

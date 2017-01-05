@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+	<filter>
+		<filter-name>encodeFilter</filter-name>
+		<filter-class>
+			com.lenovots.crm.filter.EncodingFilter
+		</filter-class>
+	</filter>
+	<filter>
+		<filter-name>privilegeValidateFilter</filter-name>
+		<filter-class>
+			com.lenovots.crm.filter.PrivilegeValidateFilter
+		</filter-class>
+	</filter>
+	<!-- CRM -->
+	<filter>
+		<filter-name>crmSessionFactoryFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sessionFactoryBeanName</param-name>
+			<param-value>crmSessionFactory</param-value>
+		</init-param>
+	</filter>
+
+	<!-- 配置监听器加载Spring配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<!-- 配置Struts -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodeFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!---->
+	<filter-mapping>
+		<filter-name>privilegeValidateFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<!-- CRM 	-->
+	<filter-mapping>
+		<filter-name>crmSessionFactoryFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<!--
+		启动线程 <servlet> <servlet-name>threadServlet</servlet-name>
+		<servlet-class> com.lenovots.crm.action.ThreadServlet </servlet-class>
+		<load-on-startup>1</load-on-startup> </servlet>
+	-->
+
+	<!-- FCKEditor配置 -->
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>
+			net.fckeditor.connector.ConnectorServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>
+			/js/fckeditor/editor/filemanager/connectors/*
+		</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>jump.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<session-config>
+		<session-timeout>540</session-timeout>
+	</session-config>
+
+<!--
+	<error-page>
+		<error-code>404</error-code>
+		<location>/noFound.jsp</location>
+	</error-page>
+	
+		<error-page> <error-code>500</error-code>
+		<location>/exception.jsp</location> </error-page>
+	-->
+
+	<display-name></display-name>
+</web-app>

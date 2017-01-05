@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.admin.entity">
+    <class name="DictionaryDetail" table="t_dictionaryDetail" lazy="false">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="parent" class="Dictionary" column="parentId" cascade="none"></many-to-one>
+        
+        <property name="name"></property>
+        
+        <property name="value"></property>
+        
+        <property name="sort">
+          <column name="sortValue"></column>
+        </property>
+        
+    </class>
+</hibernate-mapping>

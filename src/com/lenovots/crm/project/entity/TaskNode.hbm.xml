@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.project.entity">
+	<class name="TaskNode" table="t_tasknode">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" column="name"></property>
+		<property name="listUrl" column="listurl"></property>
+		<property name="processUrl" column="processurl"></property>
+		<property name="submitUrl" column="submiturl"></property>
+		<many-to-one name="contextEntity" cascade="none"
+			class="com.lenovots.crm.project.entity.Entity" not-found="ignore"
+			column="contextEntityId"></many-to-one>
+		<property name="filterCause" column="filterCause"></property>
+		<set name="properties" lazy="false" cascade="all" order-by="id">
+			<key column="taskNodeId"></key>
+			<one-to-many class="com.lenovots.crm.project.entity.PageProperty"
+				not-found="ignore" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.project.entity">
+    <class name="Property" table="t_property">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name"></property>      
+        <property name="propName"></property>      
+        <property name="columnName"></property>      
+        <property name="description"></property>
+        <property name="length"></property>
+        <property name="canNull"></property>
+        <property name="dataType"></property>
+        <property name="dictFix"></property>
+        <property name="valuePath"></property>      
+        <property name="timeFormat"></property>      
+        <property name="dateType"></property>      
+        <property name="sortValue"></property>
+        
+        <property name="display"></property>      
+        <property name="forQuery"></property>      
+        
+        <property name="relationType"></property>      
+        <property name="maintainOneToManyRelation" column="maintain_one_to_many"></property>      
+        <property name="validateType"></property>
+        
+        <property name="isTotalRow"></property>
+        <property name="isTextArea"></property>
+        <property name="setKeyCoumn"></property>
+        <property name="row"></property>
+        <property name="col"></property>
+        <property name="briefLength"></property>
+        <property name="onlyRelationship"></property>
+        
+        <property name="defaultSysTime"></property>
+        <property name="enumValue"></property>
+        
+        <property name="isId"></property>
+        
+        <property name="middletable"></property>
+        
+        <property name="isTextStringType"></property>
+        <property name="select2"></property>
+        
+        <property name="noPersistence"></property>
+        <property name="precision" column="_precision"></property>
+        
+        <property name="isAttachement" column="is_attache"></property>
+        <property name="isPicture" column="is_pic"></property>
+        <property name="attachementDisplayType" column="attache_disp_type"></property>
+        
+        <many-to-one name="entity" cascade="none" class="Entity" not-found="ignore" column="entityId"></many-to-one>
+        <many-to-one name="complexEntity" cascade="none" class="Entity" not-found="ignore" column="complexId"></many-to-one>
+    </class>
+</hibernate-mapping>

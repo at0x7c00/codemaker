@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.admin.entity">
+    <class name="SystemConfig" table="t_SystemConfig" lazy="false">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="native" />
+        </id>
+        <property name="phoneDisplayType"></property>
+        <property name="ocxObjSource" type="text"></property>
+        <property name="objId"></property>
+        <property name="phoneServerIp"></property>
+        <property name="versionDesc"></property>
+        <property name="recorderUrl"></property>
+        
+        <property name="systemTitle"></property>
+        <property name="subTitle"></property>
+        <property name="loginImage"></property>
+        <property name="mainBgImage"></property>
+        
+        <property name="useCheckCode"></property>
+        <property name="notifyTime"></property>
+        
+        <property name="selfPlayer"></property>
+        <property name="projectRootPath"></property>
+        
+    </class>
+</hibernate-mapping>

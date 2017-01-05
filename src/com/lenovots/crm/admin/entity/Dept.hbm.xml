@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lenovots.crm.admin.entity">
+    <class name="Dept" table="t_dept">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name"></property>      
+         
+        <property name="phoneNumber1"></property>      
+        <property name="phoneNumber2"></property>      
+        
+        <property name="address"></property>      
+         
+         <!-- 所属单位 -->
+        <many-to-one name="mainDept" cascade="none" class="Dept" not-found="ignore" column="mainDeptId"></many-to-one>
+        <set name="subDeptList" lazy="false" cascade="none" order-by="name">
+        	<key column="mainDeptId"></key>
+        	<one-to-many class="Dept" not-found="ignore"/>
+        </set>
+        <set name="staffs" cascade="save-update" lazy="true" order-by="name">
+        	<key column="deptId"></key>
+        	<one-to-many class="Operator" not-found="ignore"/>
+        </set>
+        <many-to-one cascade="none" name="leader" class="Operator" column="leaderId"></many-to-one>
+        <property name="description"></property>
+        <property name="category"></property>
+    </class>
+</hibernate-mapping>

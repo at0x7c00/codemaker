@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.project.entity">
+    <class name="Project" table="t_project">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name"></property>      
+        <property name="remark"></property>      
+        <property name="outputDir"></property>      
+        <property name="useI18n" column="use_i18n"></property>      
+        
+        <set name="rules" table="t_project_rule" lazy="false" cascade="delete" fetch="select" order-by="rule_Id"> 
+           <key column="projectId"></key>
+           <many-to-many class="Rule" column="rule_Id" not-found="ignore"></many-to-many>
+        </set>
+        
+        <set name="variables" table="t_project_envirvar" lazy="false" cascade="delete" fetch="select" order-by="envirvar_Id"> 
+           <key column="projectId"></key>
+           <many-to-many class="EnvironmentVariable" column="envirvar_Id" not-found="ignore"></many-to-many>
+        </set>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.project.entity">
+	<class name="VarLabel" table="t_varlabel">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" column="name"></property>
+		<property name="remark" column="remark" type="text"></property>
+		<property name="category" column="category"></property>
+		<property name="value" column="value" type="text"></property>
+		<many-to-one name="project" cascade="none"
+			class="com.lenovots.crm.project.entity.Project" not-found="ignore"
+			column="projectId"></many-to-one>
+	</class>
+</hibernate-mapping> 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="EXCEPTIONS" extends="struts-default">
+		<global-results>
+			<result name="exceptionPage">/exception.jsp</result>
+			<result name="delFail">/delFail.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="delFail" exception="org.springframework.dao.DataIntegrityViolationException"></exception-mapping>
+		    <!-- <exception-mapping result="exceptionPage" exception="java.lang.Exception"></exception-mapping> --> 
+		</global-exception-mappings>
+	</package>
+	 
+	<constant name="struts.objectFactory" value="spring"></constant>
+	
+	<constant name="struts.serve.static.browserCache" value="false" />
+	
+	<!-- 设置文件上传大小 -->
+	<constant name="struts.multipart.maxSize" value="1209715200"></constant>
+	
+	<include file="struts-detail.xml"></include>
+	
+</struts>

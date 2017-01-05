@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lenovots.crm.project.entity">
+    <class name="Packagee" table="t_package">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name"></property>      
+        <property name="remark"></property>      
+        <many-to-one name="parent" cascade="none" class="Packagee" not-found="ignore" column="parentId"></many-to-one>
+        <many-to-one name="project" cascade="none" class="Project" not-found="ignore" column="projectId"></many-to-one>
+        <set name="children" lazy="false" cascade="all" order-by="id">
+        	<key column="parentId"></key>
+        	<one-to-many class="Packagee" not-found="ignore"/>
+        </set>
+    </class>
+</hibernate-mapping>
